@@ -1,0 +1,30 @@
+[network]
+interface = "eth0"
+server_ip = "10.11.12.1"
+netmask = "255.255.255.0"
+
+[dhcp]
+client_mac = "AA:BB:CC:DD:EE:FF"
+client_ip = "10.11.12.2"
+lease_seconds = 86400
+
+[tftp]
+root = "/srv/pxe/tftp"
+bios_bootfile = "grub/i386-pc/core.0"
+uefi_bootfile = "grub/x86_64-efi/grubnetx64.efi"
+timeout_seconds = 5
+
+[http]
+port = 8080
+root = "/srv/pxe/http"
+kernel = "debian/vmlinuz"
+initrd = "debian/initrd.img"
+
+[iscsi]
+target_iqn = "iqn.2024-01.local.laptop:debian-thinclient"
+target_ip = "10.11.12.1"
+target_port = 3260
+lun = 0
+initiator_iqn = "iqn.2024-01.local.thinclient:initiator"
+# UUID of the filesystem inside the iSCSI image. Find with: sudo blkid /path/to/image.img
+root_uuid = "YOUR-UUID-HERE"
